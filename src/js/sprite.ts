@@ -44,11 +44,11 @@ export class sprite {
     }
 
 
-    // isCollision = (hitbox: Array<number>, hitbox2: Array<number>) => {
-    //     if (this.hitbox == null || this.hitbox == undefined) {
-    //         return false;
-    //     } else (this.hitbox[0] == hitbox2[0] || this.hitbox[1] == hitbox2[1]) {
-    //         return true;
-    //     }
-    // }
+     isCollision = (hitbox2: Array<number>) => {
+         if (this.hitbox == null || this.hitbox == undefined) {
+             return false;
+         } else (this.hitbox[0] == hitbox2[0] || this.hitbox[1] == hitbox2[1]) {
+             return true;
+         }
+     }
 }
