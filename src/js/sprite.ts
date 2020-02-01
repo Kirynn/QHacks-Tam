@@ -3,9 +3,9 @@ import { animData } from "@js/animData";
 
 export class sprite {
 
-    animController : animController;
-    position : Array<number>;
-    name: string;
+    private animController : animController;
+    private position : Array<number>;
+    private name: string;
 
     constructor(name : string, position : Array<number> | undefined, animData: animData) {
         this.animController = new animController(animData);

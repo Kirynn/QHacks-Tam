@@ -1,20 +1,29 @@
 import {tamController} from "./tamController";
 import testchar from '@assets/testchar.json';
+
 import { renderer } from "@js/renderer";
+import { debug } from "@js/debug";
+import { uiController } from "./uiController";
 
 export class gameController {
 
     tams : Array<tamController> = [];
-    renderer : renderer;
     animHandle : number = 0;
     drawCount : number =  0;
     checkinTime : number = 5;
 
-    constructor(renderer: renderer) {
+    public RENDERER: renderer;
+    public DEBUG: debug;
+    public UI: uiController;
 
-        this.renderer = renderer;
+    constructor() {
+
         this.tams.push(new tamController('Tam1', testchar));
         this.runGame();
+
+        this.RENDERER = new renderer();
+        this.DEBUG = new debug();
+        this.UI = new uiController();
     }
 
 
