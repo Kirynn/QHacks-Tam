@@ -64,24 +64,27 @@ export class sprite {
         }
     }
 
-    isCollision(hitbox2: Array<number>) {
-
+    isCollision = (hitbox2: Array<number>) => {
         if (this.hitbox == null || this.hitbox == undefined) {
             return false;
         }
-        else if (this.hitbox[0] == hitbox2[0] || this.hitbox[1] == hitbox2[1]) {
+        if (this.hitbox[0] < hitbox2[0] + hitbox2[2] &&
+            this.hitbox[0] + this.hitbox[2] > hitbox2[0] &&
+            this.hitbox[1] < hitbox2[1] + hitbox2[3] &&
+            this.hitbox[1] + this.hitbox[3] > hitbox2[1]) {
+            console.log(true);
             return true;
         }
     }
 
-    protected isInside(x : number, y : number) {
-        
+    protected isInside(x: number, y: number) {
+
         let pos = ENGINE.toCanvasPos(x, y);
         x = pos[0];
         y = pos[1];
 
         if (this.hitbox) {
-        
+
             return (this.hitbox[0] <= x && x <= this.hitbox[2] && this.hitbox[1] <= y && y <= this.hitbox[3]);
         }
 
