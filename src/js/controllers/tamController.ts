@@ -2,7 +2,12 @@ import {gameController} from "./gameController";
 
 export class tamController {
 
-    health: Number = 0;
+   
+    /**
+     * Happiness start at 100 and go down
+     */
+    happiness: number = 100;
+    health: number = 0;
     animcntrl: gameController;
     
 
@@ -13,4 +18,13 @@ export class tamController {
     updateHealth(i:number) {
         this.health = i;
     }
+
+    updateHappiness(i: number){
+        var happy:number = i + this.happiness;
+        if (happy <= 100){
+            this.happiness = happy;
+        }
+       
+    }
+    
 }
