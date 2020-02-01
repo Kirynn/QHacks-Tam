@@ -31,6 +31,7 @@ export class gameController {
     runGame() : void {
 
         new tamController('tam', testchar, ['test']);
+        this.UI.addElement(new UITextElement([150, 100], "Hello There!"));
 
         setInterval(this.simulate, 1000/120);
         setInterval(this.checkin, 1000 * this.checkinTime);
@@ -42,9 +43,14 @@ export class gameController {
     }
 
     public draw = () : void => {
+
+        this.RENDERER.clear();
+
         Object.values(this.sprites).forEach(sprite => {
             sprite.update();
         });
+
+        this.UI.updateUI();
 
         this.drawCount < 30 ? this.drawCount++ : this.drawCount = 0;
     }

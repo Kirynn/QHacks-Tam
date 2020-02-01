@@ -21,23 +21,24 @@ export class animController {
         this.nextAnim = this.curAnim.name;
     }
 
-    private getAnimByIndex(i : number) : animation {
+    private getAnimByIndex(i: number): animation {
 
         return Object.values(this.animData.animations)[i];
-        }
+    }
 
     update(): void {
 
-       this.curFrame++;
-       this.slicePos[0] = this.curFrame * this.animData.spacing;
+        if (ENGINE.drawCount % 4 == 0) {
+            this.curFrame++;
+            this.slicePos[0] = this.curFrame * this.animData.spacing;
 
-        if (this.curFrame >= this.curAnim.frames) {
+            if (this.curFrame >= this.curAnim.frames) {
 
-            this.curAnim = this.animData.animations[this.nextAnim];
-            this.slicePos = this.curAnim.start;
-            this.nextAnim = this.getAnimByIndex(0).name;
-            this.curFrame = 0;
+                this.curAnim = this.animData.animations[this.nextAnim];
+                this.slicePos = this.curAnim.start;
+                this.nextAnim = this.getAnimByIndex(0).name;
+                this.curFrame = 0;
+            }
         }
-
     }
 }

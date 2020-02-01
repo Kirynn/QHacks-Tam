@@ -15,7 +15,7 @@ export class UITextElement extends UIElement {
     private font : string = '30px Arial';
     private text : string = ''
 
-    constructor(position : Array<number>, text : string, font : string | undefined) {
+    constructor(position : Array<number>, text : string, font ?: string) {
 
         super(position);
         if (font) {
