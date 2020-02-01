@@ -1,15 +1,20 @@
 import { animController } from "@js/controllers/animController";
 import { animData } from "@js/animData";
-import { gameController } from "./controllers/gameController";
+import { Guid } from "./GUID";
 
 export class sprite {
 
+    public GUID : string;
+    
     private position : Array<number>;
     protected name: string;
     protected animController : animController;
     private hitbox: Array<number> | undefined | null;
 
-    constructor(name : string, animData: animData, position ?: Array<number>, hitbox:boolean) {
+    constructor(name : string, animData: animData, position ?: Array<number>) {
+
+        this.GUID = Guid.newGuid();
+
         this.animController = new animController(animData);
         this.position = position ?? [0, 0];
         this.name = name;
