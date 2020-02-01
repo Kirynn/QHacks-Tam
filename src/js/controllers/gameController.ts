@@ -3,20 +3,19 @@ import testchar from '@assets/testchar.json';
 
 import { renderer } from "@js/renderer";
 import { debug } from "@js/debug";
-import { uiController, UITextElement } from "./uiController";
+import { uiController } from "./uiController";
+import { UITextElement } from "@js/UI/uiElements";
 import { sprite } from "@js/sprite";
-
-
 
 export class gameController {
 
-    flags: {[name : string]: Array<number>} = {};
+    flags: {[name : string]: Array<string>} = {};
+    sprites: {[guid : string] : sprite} = {};
 
     tams : Array<tamController> = [];
     animHandle : number = 0;
     drawCount : number =  0;
     checkinTime : number = 5;
-    flags = Array<string>;
 
     public RENDERER: renderer;
     public DEBUG: debug;
@@ -24,19 +23,14 @@ export class gameController {
 
     constructor() {
 
-        this.tams.push(new tamController('Tam1', testchar));
-        this.flags.push({
-            key: "Tam1", 
-            value: "collide"
-        });
-        this.runGame();
-
         this.RENDERER = new renderer();
         this.DEBUG = new debug();
         this.UI = new uiController();
     }
 
     runGame() : void {
+
+        new tamController('tam', testchar, ['test']);
 
         setInterval(this.simulate, 1000/120);
         setInterval(this.checkin, 1000 * this.checkinTime);
@@ -48,9 +42,10 @@ export class gameController {
     }
 
     public draw = () : void => {
-        this.tams.forEach(tam => {
-            tam.update();
+        Object.values(this.sprites).forEach(sprite => {
+            sprite.update();
         });
+
         this.drawCount < 30 ? this.drawCount++ : this.drawCount = 0;
     }
 

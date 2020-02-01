@@ -6,3 +6,5 @@ window.ENGINE = ENGINE;
 
 window.RENDERER = ENGINE.RENDERER;
 window.DEBUG = ENGINE.DEBUG;
+
+ENGINE.runGame();
