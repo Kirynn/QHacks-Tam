@@ -1,7 +1,6 @@
 import {gameController} from '@js/controllers/gameController'
-import { animController } from "@js/controllers/animController";
 import {renderer} from '@js/renderer';
-import testchar from '@assets/testchar.json';
+import { debug } from '@js/debug';
 
 let animCtrl : animController = new animController(testchar);
 
@@ -38,5 +37,10 @@ document.getElementById("app")?.appendChild(el);
 
 //let can : HTMLCanvasElement = canvas();
 var RENDERER = new renderer();
+var GAME : gameController = new gameController(RENDERER);
+var DEBUG : debug = new debug();
+
 window.RENDERER = RENDERER;
 const GAME : gameController = new gameController(RENDERER);
+window.ENGINE = GAME;
+window.DEBUG = DEBUG;

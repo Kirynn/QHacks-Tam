@@ -26,7 +26,7 @@ export class gameController {
         this.tams.forEach(tam => {
             tam.update();
         });
-        this.drawCount++;
+        this.drawCount < 30 ? this.drawCount++ : this.drawCount = 0;
     }
 
     private simulate = () => {

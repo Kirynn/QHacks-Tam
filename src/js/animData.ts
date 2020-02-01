@@ -17,4 +17,5 @@ export interface animation {
     start: Array<number>
     frames: number;
     forceOut : boolean;
+    strech: number;
 }
