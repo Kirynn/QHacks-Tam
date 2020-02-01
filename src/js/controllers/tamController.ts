@@ -16,8 +16,8 @@ export class tamController {
     constructor() {
 
     }
-    updateName(name: string){
-        this.name = name;
+    updateName(s: string){
+        this.name = s;
         /**
          * happy animation
          */
@@ -55,11 +55,14 @@ export class tamController {
        
     }
 
-    updatePoop(i:number){
-        this.poop += i;
-        /**
-         * poo animation
-         */
+    updatePoop(time:number){
+        if(time%20==0){
+            this.poop++;
+        }
+        if(this.poop > 5){
+            this.updateHealth(-4);
+            this.updateHappiness(-2);
+        }
     }
 
     idleState(time: number){
@@ -97,16 +100,4 @@ export class tamController {
             this.updateHappiness(-8);
         }
     }
-
-    poop(time:number){
-        if(time%20==0){
-            this.poop++;
-        }
-        if(this.poop > 5){
-            this.updateHealth(-4);
-            this.updateHappiness(-2);
-        }
-    }
-
-
 }
