@@ -1,5 +1,5 @@
-import { animController } from "./controllers/animController";
-import { animData } from "./animData";
+import { animController } from "@js/controllers/animController";
+import { animData } from "@js/animData";
 
 export class sprite {
 
@@ -13,7 +13,11 @@ export class sprite {
         this.name = name;
     }
 
-    update() : void { 
+    update() : void {
+
+        if (window.RENDERER.drawCount % 4 == 0) {
+        window.RENDERER.drawImage(this.animController.sheet, this.animController.slicePos[0], 0, this.animController.animData.size[0], this.animController.animData.size[1], this.position[0], this.position[1]);
         this.animController.update();
+        }
     }
 }

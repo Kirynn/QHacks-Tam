@@ -1,16 +1,17 @@
 import {tamController} from "./tamController";
 import testchar from '@assets/testchar.json';
+import { renderer } from "@js/renderer";
 
 export class gameController {
 
     tams: Array<tamController> = [];
-    canvas: HTMLCanvasElement;
+    renderer: renderer;
     animHandle: number = 0;
     drawCount = 0;
 
-    constructor(canvas: HTMLCanvasElement) {
+    constructor(renderer: renderer) {
 
-        this.canvas = canvas;
+        this.renderer = renderer;
         this.tams.push(new tamController('Tam1', testchar));
         this.runGame();
     }
@@ -22,7 +23,10 @@ export class gameController {
     }
 
     private draw = () => {
-
+        this.tams.forEach(tam => {
+            tam.update();
+        });
+        this.drawCount++;
     }
 
     private simulate = () => {
@@ -39,15 +43,15 @@ export class gameController {
     }
 
     updateTam() {
-        this.tams[0].updateHealth(10);
-        this.tams[0].updateHappiness(10);
+        // this.tams[0].updateHealth(10);
+        // this.tams[0].updateHappiness(10);
     }
 
     moveTam() {
-        this.tams[0].moveLeft(5);
-        this.tams[0].moveRight(5);
-        this.tams[0].jump(5);
-        this.tams[0].crouch(5);
+        // this.tams[0].moveLeft(5);
+        // this.tams[0].moveRight(5);
+        // this.tams[0].jump(5);
+        // this.tams[0].crouch(5);
     }
 
     updateStateTam() {

@@ -5,6 +5,7 @@ export class animController {
 
     sheet: HTMLImageElement;
     animData: animData;
+    slicePos: Array<number> = [0, 0];
     curFrame: number = 0;
     curAnim: animation;
     nextAnim: string;
@@ -16,6 +17,7 @@ export class animController {
         this.sheet.src = path.resolve('src/assets/', this.animData.filepath);
 
         this.curAnim = Object.values(this.animData.animations)[0];
+        this.slicePos = this.curAnim.start;
         this.nextAnim = this.curAnim.name;
     }
 
@@ -26,12 +28,13 @@ export class animController {
 
     update(): void {
 
-        console.log(window.RENDERER)
        this.curFrame++;
+       this.slicePos[0] = this.curFrame * this.animData.spacing;
 
         if (this.curFrame >= this.curAnim.frames) {
 
             this.curAnim = this.animData.animations[this.nextAnim];
+            this.slicePos = this.curAnim.start;
             this.nextAnim = this.getAnimByIndex(0).name;
             this.curFrame = 0;
         }

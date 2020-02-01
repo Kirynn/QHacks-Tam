@@ -1,1 +1,1 @@
-declare var RENDERER: HTMLCanvasElement;
+declare var RENDERER: any;
