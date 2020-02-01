@@ -30,7 +30,7 @@ export class sprite {
         this.position = position ?? [0, 0];
         this.name = name;
         if (hitbox == true) {
-            this.hitbox = [this.position[0], this.position[1], 0, 0]
+            this.hitbox = [this.position[0], this.position[1], this.animationController.animData.size[0],  this.animationController.animData.size[1]]
         }
     }
 
@@ -47,7 +47,10 @@ export class sprite {
      isCollision = (hitbox2: Array<number>) => {
          if (this.hitbox == null || this.hitbox == undefined) {
              return false;
-         } else (this.hitbox[0] == hitbox2[0] || this.hitbox[1] == hitbox2[1]) {
+         } else (this.hitbox[0] > hitbox2[0] + hitbox2[2] && 
+            this.hitbox[0] + this.hitbox[2] > hitbox2[0] &&
+             this.hitbox[1] < hitbox2[1] + hitbox2[3] &&
+             this.hitbox[1] + this.hitbox[3] > hitbox2[1]) {
              return true;
          }
      }
