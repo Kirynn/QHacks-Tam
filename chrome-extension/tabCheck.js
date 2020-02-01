@@ -1,3 +1,9 @@
+/*
+go to extensions in chrome 
+enable developer mode
+click load unpacked
+select the chrome extension folder
+*/
 
 console.log('hi')
 var url_list = [];
