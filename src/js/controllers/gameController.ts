@@ -6,7 +6,10 @@ import { debug } from "@js/debug";
 import { uiController, UITextElement } from "./uiController";
 import { sprite } from "@js/sprite";
 
+
 export class gameController {
+
+    flags: {[name : string]: Array<number>} = {};
 
     tams : Array<tamController> = [];
     animHandle : number = 0;
