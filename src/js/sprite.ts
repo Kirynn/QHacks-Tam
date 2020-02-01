@@ -47,11 +47,11 @@ export class sprite {
      isCollision = (hitbox2: Array<number>) => {
          if (this.hitbox == null || this.hitbox == undefined) {
              return false;
-         } else (this.hitbox[0] > hitbox2[0] + hitbox2[2] && 
+         } else (this.hitbox[0] < hitbox2[0] + hitbox2[2] && 
             this.hitbox[0] + this.hitbox[2] > hitbox2[0] &&
              this.hitbox[1] < hitbox2[1] + hitbox2[3] &&
              this.hitbox[1] + this.hitbox[3] > hitbox2[1]) {
-             return true;
+             console.log(true);
          }
      }
 }

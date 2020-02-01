@@ -29,7 +29,8 @@ export class gameController {
     }
 
     runGame() : void {
-
+        //test collide
+        new tamController('kattest', testchar, ['test', 'collider'], [0,1, 146, 200]);
         new tamController('tam', testchar, ['test', 'clickable']);
         this.UI.addElement(new UITextElement([150, 100], "Hello There!"));
 
@@ -62,7 +63,7 @@ export class gameController {
 
                 let curSprite = this.sprites[GUID];
 
-                Object.entries(this.sprites).forEach((KeyValuePair) {
+                Object.entries(this.sprites).forEach((KeyValuePair) => {
                     if (GUID != KeyValuePair[0]) {
                         curSprite.isCollision(KeyValuePair[1]);
                     }
