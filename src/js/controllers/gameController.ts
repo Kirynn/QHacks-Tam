@@ -1,6 +1,6 @@
 import {tamController} from "./tamController";
 import testchar from '@assets/testchar.json';
-
+import heartSpriteSheet from '@assets/heartSpriteSheet.json';
 import { renderer } from "@js/renderer";
 import { debug } from "@js/debug";
 import { uiController } from "./uiController";
