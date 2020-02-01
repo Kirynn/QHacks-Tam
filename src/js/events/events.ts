@@ -1,10 +1,13 @@
 export interface clickable {
     
-    onClick(event : Event) : void;
+    onClick(event : MouseEvent) : void;
 }
 
 export interface draggable {
 
-    onMouseDown(event : Event) : void;
-    onMouseUp(event : Event) : void;
+    dragging : boolean;
+
+    onMouseDown(event : MouseEvent) : void;
+    onMouseMove(event : MouseEvent) : void;
+    onMouseUp(event : MouseEvent) : void;
 }

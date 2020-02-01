@@ -4,8 +4,8 @@ export class debug {
 
     }
 
-    public log (msg: string) {
-        if (ENGINE.drawCount % 30 == 0)
+    public log (msg: any) {
+        if (ENGINE.frameCount % 30 == 0)
             console.log(`(LOG) [${new Date().toLocaleTimeString()}: ${msg}]`);
     }
 }

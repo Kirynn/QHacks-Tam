@@ -1,0 +1,15 @@
+{
+    "filepath": "apple.png",
+    "size": [32, 32],
+    "spacing": 0,
+    "animations": {
+        "idle": {
+            "name": "idle",
+            "start": [0, 0],
+            "frames": 1,
+            "offset": 0,
+            "forceOut": true,
+            "stretch": 30
+        }
+    }
+}

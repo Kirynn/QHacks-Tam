@@ -23,6 +23,9 @@ export class renderer {
 
         if (context != null) {
 
+            context.beginPath();
+            context.stroke();
+
             context.fillText("My Tamagachi", 540, 280);
             this.context = context;
         }
@@ -39,9 +42,13 @@ export class renderer {
         this.context.fillText(text, position[0], position[1]);
     }
 
-    public drawSprite(sheet : any, X1 : any, Y1 : any, X2 : any, Y2 : any, posX : any, posY : any) : void {
+    public drawSprite(sheet : HTMLImageElement,
+        X1 : number, Y1 : number,
+        X2 : number, Y2 : number,
+        posX : number, posY : number,
+        sizeX : number, sizeY : number) : void {
 
-        this.context.drawImage(sheet, X1, Y1, X2, Y2, posX, posY, 150, 250);
+        this.context.drawImage(sheet, X1, Y1, X2, Y2, posX, posY, sizeX, sizeY);
     }
 
 

@@ -6,15 +6,19 @@ export class sprite {
 
     public GUID: string;
 
-    private position: Array<number>;
+    protected position: Array<number>;
     protected name: string;
     protected animController: animController;
-    private hitbox: Array<number> | undefined | null;
+    protected flags: Array<string>;
+
+    public hitbox: Array<number> | undefined | null;
 
     constructor(name: string, animData: animData, flags?: Array<string>, position?: Array<number>, hitbox: boolean = false) {
 
         this.GUID = Guid.newGuid();
         ENGINE.sprites[this.GUID] = this;
+
+        this.flags = flags ?? [];
 
         if (flags) {
 
@@ -29,8 +33,13 @@ export class sprite {
         this.animController = new animController(animData);
         this.position = position ?? [0, 0];
         this.name = name;
-        if (hitbox == true) {
-            this.hitbox = [this.position[0], this.position[1], 0, 0]
+        if (hitbox == true || this.flags.includes('collider')) {
+            this.hitbox = [
+                this.position[0],
+                this.position[1],
+                this.animController.animData.size[0] + this.position[0],
+                this.animController.animData.size[1] + this.position[1]
+            ]
         }
     }
 
@@ -39,16 +48,43 @@ export class sprite {
         RENDERER.drawSprite(this.animController.sheet,
             this.animController.slicePos[0], this.animController.slicePos[1],
             this.animController.animData.size[0], this.animController.animData.size[1],
-            this.position[0], this.position[1]);
+            this.position[0], this.position[1],
+            this.animController.animData.size[0], this.animController.animData.size[1]);
         this.animController.update();
     }
 
+    updateHitBox() {
+        if (this.hitbox) {
+            this.hitbox = [
+                this.position[0],
+                this.position[1],
+                this.animController.animData.size[0] + this.position[0],
+                this.animController.animData.size[1] + this.position[1]
+            ]
+        }
+    }
 
-     isCollision = (hitbox2: Array<number>) => {
-         if (this.hitbox == null || this.hitbox == undefined) {
-             return false;
-         } else (this.hitbox[0] == hitbox2[0] || this.hitbox[1] == hitbox2[1]) {
-             return true;
-         }
-     }
+    isCollision(hitbox2: Array<number>) {
+
+        if (this.hitbox == null || this.hitbox == undefined) {
+            return false;
+        }
+        else if (this.hitbox[0] == hitbox2[0] || this.hitbox[1] == hitbox2[1]) {
+            return true;
+        }
+    }
+
+    protected isInside(x : number, y : number) {
+        
+        let pos = ENGINE.toCanvasPos(x, y);
+        x = pos[0];
+        y = pos[1];
+
+        if (this.hitbox) {
+        
+            return (this.hitbox[0] <= x && x <= this.hitbox[2] && this.hitbox[1] <= y && y <= this.hitbox[3]);
+        }
+
+        throw new Error("This object has no hitbox");
+    }
 }

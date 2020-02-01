@@ -28,7 +28,7 @@ export class animController {
 
     update(): void {
 
-        if (ENGINE.drawCount % 4 == 0) {
+        if (ENGINE.frameCount % 4 == 0) {
             this.curFrame++;
             this.slicePos[0] = this.curFrame * this.animData.spacing;
 

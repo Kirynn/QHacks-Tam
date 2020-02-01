@@ -120,7 +120,14 @@ export class tamController extends sprite implements clickable {
         }
     }
 
-    onClick(event: Event): void {
-        throw new Error("Click event not implemented for tamController");
+    onClick = (event: MouseEvent): Boolean => {
+
+        if (this.flags && this.flags.includes('collider') && this.hitbox != null) {
+            let canvaspos : Array<number> = ENGINE.toCanvasPos(event.pageX, event.pageY);
+            return this.isInside(canvaspos[0], canvaspos[1]);
+
+        }
+        return false;
+
     }
 }
