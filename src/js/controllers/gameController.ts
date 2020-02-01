@@ -4,10 +4,11 @@ import { renderer } from "@js/renderer";
 
 export class gameController {
 
-    tams: Array<tamController> = [];
-    renderer: renderer;
-    animHandle: number = 0;
-    drawCount = 0;
+    tams : Array<tamController> = [];
+    renderer : renderer;
+    animHandle : number = 0;
+    drawCount : number =  0;
+    checkinTime : number = 5;
 
     constructor(renderer: renderer) {
 
@@ -20,6 +21,12 @@ export class gameController {
     runGame() {
 
         setInterval(this.simulate, 1000/120);
+        setInterval(this.checkin, 1000 * this.checkinTime);
+    }
+
+    private checkin = () => {
+
+        DEBUG.log(`${this.checkinTime} has passed`)
     }
 
     private draw = () => {
@@ -30,7 +37,6 @@ export class gameController {
     }
 
     private simulate = () => {
-
 
         if (Math.random() * 1000 > 800) {
             cancelAnimationFrame(this.animHandle);

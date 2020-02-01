@@ -4,7 +4,7 @@ export class debug {
 
     }
 
-    public log = (msg: string) => {
+    public log (msg: string) {
         if (ENGINE.drawCount % 30 == 0)
             console.log(`[${new Date().toLocaleTimeString()}: ${msg}]`);
     }
