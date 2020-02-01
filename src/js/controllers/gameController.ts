@@ -1,6 +1,6 @@
 import {tamController} from "./tamController";
 import testchar from '@assets/testchar.json';
-
+import heartSpriteSheet from '@assets/heartSpriteSheet.json';
 import { renderer } from "@js/renderer";
 import { debug } from "@js/debug";
 import { uiController } from "./uiController";
@@ -31,6 +31,7 @@ export class gameController {
     runGame() : void {
 
         new tamController('tam', testchar, ['test']);
+        new tamController('catTam', heartSpriteSheet, ['test']);
 
         setInterval(this.simulate, 1000/120);
         setInterval(this.checkin, 1000 * this.checkinTime);
