@@ -3,13 +3,14 @@ import testchar from '@assets/testchar.json';
 
 import { renderer } from "@js/renderer";
 import { debug } from "@js/debug";
-import { uiController } from "./uiController";
+import { uiController, UITextElement } from "./uiController";
+import { sprite } from "@js/sprite";
+
 
 
 export class gameController {
 
-    
-    
+    flags: {[name : string]: Array<number>} = {};
 
     tams : Array<tamController> = [];
     animHandle : number = 0;
@@ -35,60 +36,57 @@ export class gameController {
         this.UI = new uiController();
     }
 
-
-    runGame() {
+    runGame() : void {
 
         setInterval(this.simulate, 1000/120);
         setInterval(this.checkin, 1000 * this.checkinTime);
     }
 
-    private checkin = () => {
+    private checkin = () : void => {
 
         DEBUG.log(`${this.checkinTime} has passed`)
     }
 
-    private draw = () => {
+    public draw = () : void => {
         this.tams.forEach(tam => {
             tam.update();
         });
         this.drawCount < 30 ? this.drawCount++ : this.drawCount = 0;
     }
 
-    private simulate = () => {
+    private simulate = () : void => {
 
         if (Math.random() * 1000 > 800) {
-            
             cancelAnimationFrame(this.animHandle);
             this.animHandle = requestAnimationFrame(this.draw);
         }
     }
 
-    addTam(tam: tamController) {
-
+    addTam(tam: tamController) : void {
         this.tams.push(tam);
     }
 
-    updateTam() {
+    updateTam() : void {
         // this.tams[0].updateHealth(10);
         // this.tams[0].updateHappiness(10);
     }
 
-    moveTam() {
+    moveTam() : void {
         // this.tams[0].moveLeft(5);
         // this.tams[0].moveRight(5);
         // this.tams[0].jump(5);
         // this.tams[0].crouch(5);
     }
 
-    updateStateTam() {
+    updateStateTam() : void {
 
     }
 
-    deceaseTam(){
+    deceaseTam() : void {
         this.tams.shift();
     }
 
-    nameTam(){
+    nameTam() : void {
         this.tams[0].updateName(name);
     }
 }

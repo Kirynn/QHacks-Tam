@@ -4,17 +4,12 @@ import { gameController } from "./controllers/gameController";
 
 export class sprite {
 
-    animController : animController;
-    position : Array<number>;
-    name: string;
-    hitbox: Array<number> | undefined | null = null;
-    flags: Array<string>;
-    private animController : animController;
     private position : Array<number>;
-    private name: string;
+    protected name: string;
+    protected animController : animController;
+    private hitbox: Array<number> | undefined | null;
 
-
-    constructor(name : string, position : Array<number> | undefined | null, animData: animData, hitbox : boolean) {
+    constructor(name : string, animData: animData, position ?: Array<number>, hitbox:boolean) {
         this.animController = new animController(animData);
         this.position = position ?? [0, 0];
         this.name = name;

@@ -1,33 +1,42 @@
 export class renderer {
 
-    context: any;
-    canvas: any;
+    context: CanvasRenderingContext2D;
+    canvas: HTMLCanvasElement;
 
     constructor() {
-        this.context = this.init();
-    }
+        
+        let canvas = document.querySelector('canvas');
 
-    init(): HTMLCanvasElement {
-        this.canvas = document.querySelector('canvas');
-
-        //load image
-        //let el = document.createElement('img');
-        //el.src = animCtrl.sheet.src;
+        if (canvas != null) {
+            this.canvas = canvas;
+        }
+        
+        else {
+            
+            throw Error("No canvas found");
+        }
 
         this.canvas.width = window.innerWidth;
         this.canvas.height = window.innerHeight;
 
-        var c = this.canvas.getContext('2d');
+        let context : CanvasRenderingContext2D | null = this.canvas.getContext('2d');
 
-        c.fillText("My Tamagachi", 540, 280);
+        if (context != null) {
 
-        //draw image on canvas
-        //el.onload = function () {
-            //c.drawImage(el, 0, 0, 70, 100, 500, 20, 150, 250); //cutting the image into different pieces
-            //open image in paint and figure out actual dimensions
-        //}
+            context.fillText("My Tamagachi", 540, 280);
+            this.context = context;
+        }
 
-        return c;
+        else {
+            
+            throw Error("No canvas context could be found");
+        }
+    }
+
+    public drawText(position : Array<number>, text : string, font : string) {
+        
+        this.context.font = font;
+        this.context.fillText(text, position[0], position[1]);
     }
 
     public drawImage(sheet : any, X1 : any, Y1 : any, X2 : any, Y2 : any, posX : any, posY : any) {
