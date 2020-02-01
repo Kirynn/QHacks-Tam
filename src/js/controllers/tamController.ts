@@ -8,17 +8,33 @@ export class tamController {
      */
     happiness: number = 100;
     health: number = 100;
+    poop: number = 0;
+    name: string;
     animcntrl: gameController;
     
 
     constructor() {
 
     }
-
+    updateName(name: string){
+        this.name = name;
+        /**
+         * happy animation
+         */
+    }
     updateHealth(i:number) {
         var heal:number = i + this.health;
         if (heal <= 100){
             this.health = heal;
+        }
+        if (Math.sign(i) == 1){
+            /**
+             * Start happy animation?
+             */
+        }else{
+            /**
+             * sad animation?
+             */
         }
     }
 
@@ -39,6 +55,13 @@ export class tamController {
        
     }
 
+    updatePoop(i:number){
+        this.poop += i;
+        /**
+         * poo animation
+         */
+    }
+
     idleState(time: number){
         /**
          * Start idle animation?
@@ -49,8 +72,41 @@ export class tamController {
         if(time%5==0){
             this.updateHappiness(-5);
         }
-
-        
     }
+
+    happyState(time:number){
+        /**
+         * Start happy animation?
+         */
+        if(time%10==0){
+            this.updateHealth(2);
+        }
+        if(time%5==0){
+            this.updateHappiness(5);
+        }
+    }
+
+    sadState(time:number){
+        /**
+         * Start sad/sick animation?
+         */
+        if(time%10==0){
+            this.updateHealth(-5);
+        }
+        if(time%5==0){
+            this.updateHappiness(-8);
+        }
+    }
+
+    poop(time:number){
+        if(time%20==0){
+            this.poop++;
+        }
+        if(this.poop > 5){
+            this.updateHealth(-4);
+            this.updateHappiness(-2);
+        }
+    }
+
 
 }
