@@ -12,6 +12,12 @@ document.getElementById("app")?.appendChild(el);
 
 function canvas () {
     var canvas: any = document.querySelector('canvas');
+    var image: any = new Image();
+
+
+    image.src = 'the-scream.svg';
+    
+    //document.getElementById('scream');
 
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
@@ -25,6 +31,12 @@ function canvas () {
     c.strokeStyle = "rgba(255, 0, 0, 0.5)";
     c.stroke();   //actually get line
 
+    c.fillText("Tamagachi", 500,200);
+
+    image.onload = function() {
+        c.drawImage(image, 10, 10, 200, 300);
+    }
+    
 
 }
 
