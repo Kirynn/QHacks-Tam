@@ -3,11 +3,12 @@ import { animData } from "@js/animData";
 
 export class sprite {
 
-    private animController : animController;
     private position : Array<number>;
-    private name: string;
+    
+    protected name: string;
+    protected animController : animController;
 
-    constructor(name : string, position : Array<number> | undefined, animData: animData) {
+    constructor(name : string, animData: animData, position ?: Array<number>) {
         this.animController = new animController(animData);
         this.position = position ?? [0, 0];
         this.name = name;
