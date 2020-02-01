@@ -1,0 +1,14 @@
+{
+    "name": "Tam",
+    "description": "check tabs",
+    "version": "1.0",
+    "manifest_version": 2,
+    "author": "C. Wu",
+
+    "browser_action": {
+        "default_popup": "extension.html"
+      },
+
+
+    "permissions": ["tabs", "storage", "https://*/"]
+    }
