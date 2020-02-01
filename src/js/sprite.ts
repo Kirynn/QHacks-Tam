@@ -4,30 +4,41 @@ import { Guid } from "./GUID";
 
 export class sprite {
 
-    public GUID : string;
-    
-    private position : Array<number>;
-    
-    protected name: string;
-    protected animController : animController;
+    public GUID: string;
 
-    constructor(name : string, animData: animData, position ?: Array<number>) {
+    private position: Array<number>;
+
+    protected name: string;
+    protected animController: animController;
+
+    constructor(name: string, animData: animData, flags?: Array<string>, position?: Array<number>) {
 
         this.GUID = Guid.newGuid();
+        ENGINE.sprites[this.GUID] = this;
+
+        if (flags) {
+
+            flags.forEach(flag => {
+                if (ENGINE.flags[flag] == null) {
+                    ENGINE.flags[flag] = Array<string>();
+                }
+                ENGINE.flags[flag].push(this.GUID);
+            });
+        }
 
         this.animController = new animController(animData);
         this.position = position ?? [0, 0];
         this.name = name;
     }
 
-    update() : void {
+    update(): void {
 
         if (ENGINE.drawCount % 4 == 0) {
             RENDERER.drawImage(this.animController.sheet,
                 this.animController.slicePos[0], this.animController.slicePos[1],
                 this.animController.animData.size[0], this.animController.animData.size[1],
                 this.position[0], this.position[1]);
-        this.animController.update();
+            this.animController.update();
         }
     }
 }

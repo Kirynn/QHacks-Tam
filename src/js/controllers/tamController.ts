@@ -10,8 +10,8 @@ export class tamController extends sprite {
     happiness: number = 100;
     health: number = 100;
     poop: number = 0;
-    constructor(name : string, animData: animData, position ?: Array<number>) {
-        super(name, position, animData);
+    constructor(name : string, animData: animData, flags?: Array<string>, position ?: Array<number>) {
+        super(name, animData, flags, position);
     }
 
     setAnimation(name: string): void {
