@@ -15,8 +15,11 @@ export class sprite {
 
     update() : void {
 
-        if (window.RENDERER.drawCount % 4 == 0) {
-        window.RENDERER.drawImage(this.animController.sheet, this.animController.slicePos[0], 0, this.animController.animData.size[0], this.animController.animData.size[1], this.position[0], this.position[1]);
+        if (ENGINE.drawCount % 4 == 0) {
+            RENDERER.drawImage(this.animController.sheet,
+                this.animController.slicePos[0], this.animController.slicePos[1],
+                this.animController.animData.size[0], this.animController.animData.size[1],
+                this.position[0], this.position[1]);
         this.animController.update();
         }
     }
