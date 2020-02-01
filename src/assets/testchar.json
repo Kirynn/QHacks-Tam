@@ -1,6 +1,14 @@
 {
-    "filepath": "testchar.svg",
-    "size": [],
-    "spacing": 0,
-    "frames": 0
+    "filepath": "testchar.png",
+    "size": [145, 200],
+    "spacing": 145,
+    "animations": {
+        "idle": {
+            "name": "idle",
+            "start": [0, 0],
+            "frames": 4,
+            "offset": 0,
+            "forceOut": true
+        }
+    }
 }

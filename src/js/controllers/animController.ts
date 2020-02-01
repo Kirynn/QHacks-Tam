@@ -1,19 +1,43 @@
 import * as path from 'path';
-import * as fs from 'fs';
-import { animData } from '@js/animData';
+import { animData, animation } from '@js/animData';
 
 export class animController {
 
     sheet: HTMLImageElement;
     animData: animData;
+    slicePos: Array<number> = [0, 0];
+    curFrame: number = 0;
+    curAnim: animation;
+    nextAnim: string;
 
     constructor(data: animData) {
 
-        console.log('__dirname: ' + __dirname);
-        console.log(path.resolve(__dirname, 'src/assets/', data.filepath));
-
         this.animData = data;
-        this.sheet = new Image()
-        this.sheet.src = path.resolve(__dirname, 'src/assets/', this.animData.filepath);
+        this.sheet = new Image();
+        this.sheet.src = path.resolve('src/assets/', this.animData.filepath);
+
+        this.curAnim = Object.values(this.animData.animations)[0];
+        this.slicePos = this.curAnim.start;
+        this.nextAnim = this.curAnim.name;
+    }
+
+    private getAnimByIndex(i : number) : animation {
+
+        return Object.values(this.animData.animations)[i];
+        }
+
+    update(): void {
+
+       this.curFrame++;
+       this.slicePos[0] = this.curFrame * this.animData.spacing;
+
+        if (this.curFrame >= this.curAnim.frames) {
+
+            this.curAnim = this.animData.animations[this.nextAnim];
+            this.slicePos = this.curAnim.start;
+            this.nextAnim = this.getAnimByIndex(0).name;
+            this.curFrame = 0;
+        }
+
     }
 }
