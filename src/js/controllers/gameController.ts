@@ -15,6 +15,7 @@ export class gameController {
     animHandle : number = 0;
     drawCount : number =  0;
     checkinTime : number = 5;
+    flags = Array<string>;
 
     public RENDERER: renderer;
     public DEBUG: debug;
@@ -51,7 +52,6 @@ export class gameController {
     private simulate = () : void => {
 
         if (Math.random() * 1000 > 800) {
-
             cancelAnimationFrame(this.animHandle);
             this.animHandle = requestAnimationFrame(this.draw);
         }
