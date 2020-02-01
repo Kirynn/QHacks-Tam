@@ -3,7 +3,8 @@ import testchar from '@assets/testchar.json';
 
 import { renderer } from "@js/renderer";
 import { debug } from "@js/debug";
-import { uiController, UITextElement } from "./uiController";
+import { uiController } from "./uiController";
+import { UITextElement } from "@js/UI/uiElements";
 import { sprite } from "@js/sprite";
 
 export class gameController {
@@ -15,7 +16,6 @@ export class gameController {
     animHandle : number = 0;
     drawCount : number =  0;
     checkinTime : number = 5;
-    flags = Array<string>;
 
     public RENDERER: renderer;
     public DEBUG: debug;
@@ -30,7 +30,7 @@ export class gameController {
 
     runGame() : void {
 
-        let tam = new tamController('tam', testchar, ['test']);
+        new tamController('tam', testchar, ['test']);
 
         setInterval(this.simulate, 1000/120);
         setInterval(this.checkin, 1000 * this.checkinTime);
