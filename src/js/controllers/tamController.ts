@@ -1,13 +1,12 @@
-import {gameController} from "./gameController";
+import { animController } from "./animController";
 
 export class tamController {
 
     health: Number = 0;
-    animcntrl: gameController;
-    
+    animController: animController;
 
-    constructor() {
-
+    constructor(animController: animController) {
+        this.animController = animController;
     }
 
     updateHealth(i:number) {

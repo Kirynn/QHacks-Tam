@@ -11,7 +11,15 @@ module.exports = {
         filename: 'app.bundle.js'
     },
     resolve: {
-        extensions: ['.ts', '.tsx', '.js', '.json']
+        extensions: ['.ts', '.tsx', '.js', '.json'],
+        alias: {
+            '~': path.resolve(__dirname),
+            '@assets': path.resolve(__dirname, 'src/assets/'),
+            '@js': path.resolve(__dirname, 'src/js/')
+        },
+    },
+    node : {
+        __dirname: true
     },
     module: {
         rules: [{

@@ -14,5 +14,5 @@ export class gameController {
 
     updateTam() {
         this.tams[0].updateHealth(10);
-    }
+    }   
 }
