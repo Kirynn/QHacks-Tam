@@ -1,14 +1,4 @@
-import {animController} from './js/controllers/animController';
-import testchar from '@assets/testchar.json';
-
-let animCtrl : animController = new animController(testchar);
-
-console.log("trying to add image");
-
-let el = document.createElement('img');
-el.src = animCtrl.sheet.src;
-
-document.getElementById("app")?.appendChild(el);
+import {gameController} from '@js/controllers/gameController'
 
 function canvas () {
     var canvas: any = document.querySelector('canvas');
@@ -25,9 +15,9 @@ function canvas () {
     c.strokeStyle = "rgba(255, 0, 0, 0.5)";
     c.stroke();   //actually get line
 
-
+    return canvas;
 }
 
-canvas();
-
-console.log("hi");
+let can : HTMLCanvasElement = canvas();
+const GAME : gameController = new gameController(can);
+var RENDERER = can;

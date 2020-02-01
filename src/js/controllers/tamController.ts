@@ -1,101 +1,105 @@
-import { animController } from "./animController";
+import { sprite } from '@js/sprite';
+import { animData } from '@js/animData';
 
-export class tamController {
+export class tamController extends sprite {
 
-   
+
     /**
      * Happiness & Health start at 100 and go down
      */
     happiness: number = 100;
     health: number = 100;
     poop: number = 0;
-    name: string;
-    animcntrl: animController;
-    
-    constructor() {
-        this.animController = new animController();
+    constructor(name : string, animData: animData, position ?: Array<number>) {
+        super(name, position, animData);
     }
-    updateName(s: string){
-        this.name = s;
+
+    setAnimation(name: string): void {
+
+        super.animController.nextAnim = name;
+    }
+
+    updateName(s: string) {
+        super.name = s;
         /**
          * happy animation
          */
     }
-    updateHealth(i:number) {
-        var heal:number = i + this.health;
-        if (heal <= 100){
+    updateHealth(i: number) {
+        var heal: number = i + this.health;
+        if (heal <= 100) {
             this.health = heal;
         }
-        if (Math.sign(i) == 1){
+        if (Math.sign(i) == 1) {
             /**
              * Start happy animation?
              */
-        }else{
+        } else {
             /**
              * sad animation?
              */
         }
     }
 
-    updateHappiness(i: number){
-        var happy:number = i + this.happiness;
-        if (happy <= 100){
+    updateHappiness(i: number) {
+        var happy: number = i + this.happiness;
+        if (happy <= 100) {
             this.happiness = happy;
         }
-        if (Math.sign(i) == 1){
+        if (Math.sign(i) == 1) {
             /**
              * Start happy animation?
              */
-        }else{
+        } else {
             /**
              * sad animation?
              */
         }
-       
+
     }
 
-    updatePoop(time:number){
-        if(time%20==0){
+    updatePoop(time: number) {
+        if (time % 20 == 0) {
             this.poop++;
         }
-        if(this.poop > 5){
+        if (this.poop > 5) {
             this.updateHealth(-4);
             this.updateHappiness(-2);
         }
     }
 
-    idleState(time: number){
+    idleState(time: number) {
         /**
          * Start idle animation?
          */
-        if(time%10==0){
+        if (time % 10 == 0) {
             this.updateHealth(-3);
         }
-        if(time%5==0){
+        if (time % 5 == 0) {
             this.updateHappiness(-5);
         }
     }
 
-    happyState(time:number){
+    happyState(time: number) {
         /**
          * Start happy animation?
          */
-        if(time%10==0){
+        if (time % 10 == 0) {
             this.updateHealth(2);
         }
-        if(time%5==0){
+        if (time % 5 == 0) {
             this.updateHappiness(5);
         }
     }
 
-    sadState(time:number){
+    sadState(time: number) {
         /**
          * Start sad/sick animation?
          */
-        if(time%10==0){
+        if (time % 10 == 0) {
             this.updateHealth(-5);
         }
-        if(time%5==0){
+        if (time % 5 == 0) {
             this.updateHappiness(-8);
         }
     }
