@@ -58,6 +58,16 @@ export class gameController {
     private simulate = () : void => {
 
         if (Math.random() * 1000 > 800) {
+            this.flags["test"].forEach(GUID => {
+
+                let curSprite = this.sprites[GUID];
+
+                Object.entries(this.sprites).forEach((KeyValuePair) {
+                    if (GUID != KeyValuePair[0]) {
+                        curSprite.isCollision(KeyValuePair[1]);
+                    }
+                })
+            });
             cancelAnimationFrame(this.animHandle);
             this.animHandle = requestAnimationFrame(this.draw);
         }
