@@ -1,3 +1,3 @@
-import { tamController } from './controllers/tamController'
+import { tamController } from './js/controllers/tamController'
 
 console.log("working");
