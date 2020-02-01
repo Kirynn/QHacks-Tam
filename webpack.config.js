@@ -19,7 +19,7 @@ module.exports = {
         },
     },
     node : {
-        __dirname: true
+        __dirname: false
     },
     module: {
         rules: [{

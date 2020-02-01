@@ -1,5 +1,4 @@
 import {animController} from './js/controllers/animController';
-import * as path from 'path';
 import testchar from '@assets/testchar.json';
 
 let animCtrl : animController = new animController(testchar);
