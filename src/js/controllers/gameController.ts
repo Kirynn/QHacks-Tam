@@ -2,17 +2,24 @@ import {tamController} from "./tamController";
 import testchar from '@assets/testchar.json';
 import { renderer } from "@js/renderer";
 
+
 export class gameController {
 
     tams: Array<tamController> = [];
     renderer: renderer;
     animHandle: number = 0;
     drawCount = 0;
+    flags = Array<string>;
+
 
     constructor(renderer: renderer) {
 
         this.renderer = renderer;
         this.tams.push(new tamController('Tam1', testchar));
+        this.flags.push({
+            key: "Tam1", 
+            value: "collide"
+        });
         this.runGame();
     }
 
@@ -33,12 +40,14 @@ export class gameController {
 
 
         if (Math.random() * 1000 > 800) {
+            
             cancelAnimationFrame(this.animHandle);
             this.animHandle = requestAnimationFrame(this.draw);
         }
     }
 
     addTam(tam: tamController) {
+
         this.tams.push(tam);
     }
 
