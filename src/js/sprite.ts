@@ -36,7 +36,7 @@ export class sprite {
 
     update(): void {
 
-        RENDERER.drawImage(this.animController.sheet,
+        RENDERER.drawSprite(this.animController.sheet,
             this.animController.slicePos[0], this.animController.slicePos[1],
             this.animController.animData.size[0], this.animController.animData.size[1],
             this.position[0], this.position[1]);
@@ -44,11 +44,11 @@ export class sprite {
     }
 
 
-    // isCollision = (hitbox: Array<number>, hitbox2: Array<number>) => {
-    //     if (this.hitbox == null || this.hitbox == undefined) {
-    //         return false;
-    //     } else (this.hitbox[0] == hitbox2[0] || this.hitbox[1] == hitbox2[1]) {
-    //         return true;
-    //     }
-    // }
+    isCollision = (hitbox: Array<number>, hitbox2: Array<number>) => {
+        if (this.hitbox == null || this.hitbox == undefined) {
+            return false;
+        } else (this.hitbox[0] == hitbox2[0] || this.hitbox[1] == hitbox2[1]) {
+            return true;
+        }
+    }
 }

@@ -28,5 +28,16 @@ export class UITextElement extends UIElement {
         
         RENDERER.drawText(this.position, this.text, this.font)
     }
+}
 
+export class UIImageElement extends UIElement {
+
+    constructor(position : Array<number>) {
+
+        super(position)
+    }
+
+    draw() : void {
+
+    }
 }

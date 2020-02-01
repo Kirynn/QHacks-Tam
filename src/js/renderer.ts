@@ -1,5 +1,3 @@
-import { debug } from "./debug";
-
 export class renderer {
 
     context: CanvasRenderingContext2D;
@@ -35,18 +33,23 @@ export class renderer {
         }
     }
 
-    public drawText(position : Array<number>, text : string, font : string) {
+    public drawText(position : Array<number>, text : string, font : string) : void {
         
         this.context.font = font;
         this.context.fillText(text, position[0], position[1]);
     }
 
-    public drawImage(sheet : any, X1 : any, Y1 : any, X2 : any, Y2 : any, posX : any, posY : any) {
+    public drawSprite(sheet : any, X1 : any, Y1 : any, X2 : any, Y2 : any, posX : any, posY : any) : void {
 
         this.context.drawImage(sheet, X1, Y1, X2, Y2, posX, posY, 150, 250);
     }
 
-    public clear() {
+
+    public drawImage() : void {
+
+    }
+
+    public clear() : void{
 
         this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
     }

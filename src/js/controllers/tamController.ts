@@ -1,8 +1,8 @@
 import { sprite } from '@js/sprite';
 import { animData } from '@js/animData';
+import { clickable } from '@js/events/events';
 
-export class tamController extends sprite {
-
+export class tamController extends sprite implements clickable {
 
     /**
      * Happiness & Health start at 100 and go down
@@ -10,13 +10,29 @@ export class tamController extends sprite {
     happiness: number = 100;
     health: number = 100;
     poop: number = 0;
-    constructor(name : string, animData: animData, flags?: Array<string>, position ?: Array<number>) {
+    animList: Array<string>;
+
+    constructor(name: string, animData: animData, flags?: Array<string>, position?: Array<number>) {
         super(name, animData, flags, position);
+
+        this.animList = Object.keys(animData.animations);
+
+        if (flags?.includes('clickable')) {
+            ENGINE.registerClickable(this.GUID, this.onClick);
+        }
     }
 
     setAnimation(name: string): void {
 
-        super.animController.nextAnim = name;
+        if (this.animList.includes(name)) {
+
+            super.animController.nextAnim = name;
+        }
+
+        else {
+
+            throw new Error(`There is no animation called ${name}`);
+        }
     }
 
     updateName(s: string) {
@@ -102,5 +118,9 @@ export class tamController extends sprite {
         if (time % 5 == 0) {
             this.updateHappiness(-8);
         }
+    }
+
+    onClick(event: Event): void {
+        throw new Error("Click event not implemented for tamController");
     }
 }

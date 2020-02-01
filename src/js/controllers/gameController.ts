@@ -30,7 +30,7 @@ export class gameController {
 
     runGame() : void {
 
-        new tamController('tam', testchar, ['test']);
+        new tamController('tam', testchar, ['test', 'clickable']);
         this.UI.addElement(new UITextElement([150, 100], "Hello There!"));
 
         setInterval(this.simulate, 1000/120);
@@ -60,6 +60,15 @@ export class gameController {
         if (Math.random() * 1000 > 800) {
             cancelAnimationFrame(this.animHandle);
             this.animHandle = requestAnimationFrame(this.draw);
+        }
+    }
+
+    public registerClickable(GUID: string, func : Function) {
+
+        if (this.flags['clickable'].includes(GUID)) {
+            this.RENDERER.canvas.addEventListener('click', (event) => {
+                func(event);
+            });
         }
     }
 
