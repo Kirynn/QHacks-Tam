@@ -11,7 +11,7 @@ export class sprite {
     protected animController : animController;
     private hitbox: Array<number> | undefined | null;
 
-    constructor(name : string, animData: animData, position ?: Array<number>) {
+    constructor(name : string, animData: animData, position ?: Array<number>, hitbox: boolean) {
 
         this.GUID = Guid.newGuid();
 
