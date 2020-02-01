@@ -9,6 +9,9 @@ export class sprite {
     name: string;
     hitbox: Array<number> | undefined | null = null;
     flags: Array<string>;
+    private animController : animController;
+    private position : Array<number>;
+    private name: string;
 
 
     constructor(name : string, position : Array<number> | undefined | null, animData: animData, hitbox : boolean) {

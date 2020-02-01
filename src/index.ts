@@ -1,11 +1,8 @@
 import {gameController} from '@js/controllers/gameController'
-import {renderer} from '@js/renderer';
-import { debug } from '@js/debug';
 
-var RENDERER = new renderer();
-var GAME : gameController = new gameController(RENDERER);
-var DEBUG : debug = new debug();
+var ENGINE : gameController = new gameController();
 
-window.RENDERER = RENDERER;
-window.ENGINE = GAME;
-window.DEBUG = DEBUG;
+window.ENGINE = ENGINE;
+
+window.RENDERER = ENGINE.RENDERER;
+window.DEBUG = ENGINE.DEBUG;

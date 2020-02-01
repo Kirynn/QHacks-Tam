@@ -1,32 +1,50 @@
 import {tamController} from "./tamController";
 import testchar from '@assets/testchar.json';
+
 import { renderer } from "@js/renderer";
+import { debug } from "@js/debug";
+import { uiController } from "./uiController";
 
 
 export class gameController {
 
-    tams: Array<tamController> = [];
-    renderer: renderer;
-    animHandle: number = 0;
-    drawCount = 0;
+    
+    
+
+    tams : Array<tamController> = [];
+    animHandle : number = 0;
+    drawCount : number =  0;
+    checkinTime : number = 5;
     flags = Array<string>;
 
+    public RENDERER: renderer;
+    public DEBUG: debug;
+    public UI: uiController;
 
-    constructor(renderer: renderer) {
+    constructor() {
 
-        this.renderer = renderer;
         this.tams.push(new tamController('Tam1', testchar));
         this.flags.push({
             key: "Tam1", 
             value: "collide"
         });
         this.runGame();
+
+        this.RENDERER = new renderer();
+        this.DEBUG = new debug();
+        this.UI = new uiController();
     }
 
 
     runGame() {
 
         setInterval(this.simulate, 1000/120);
+        setInterval(this.checkin, 1000 * this.checkinTime);
+    }
+
+    private checkin = () => {
+
+        DEBUG.log(`${this.checkinTime} has passed`)
     }
 
     private draw = () => {
@@ -37,7 +55,6 @@ export class gameController {
     }
 
     private simulate = () => {
-
 
         if (Math.random() * 1000 > 800) {
             

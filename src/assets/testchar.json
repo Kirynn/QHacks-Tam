@@ -1,7 +1,7 @@
 {
     "filepath": "testchar.png",
     "size": [145, 200],
-    "spacing": 145,
+    "spacing": 150,
     "animations": {
         "idle": {
             "name": "idle",
