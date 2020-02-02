@@ -14,9 +14,9 @@ export abstract class UIElement {
 
 export class UITextElement extends UIElement {
 
-    public font : string = '30px Arial';
+    public font : string = '30px Comic Sans';
     public text : string = ''
-
+   
     constructor(name : string, position : Array<number>, text : string, font ?: string) {
 
         super(name, position);
@@ -25,6 +25,7 @@ export class UITextElement extends UIElement {
             this.font = font;
         }
         this.text = text;
+        
     }
 
     draw() : void {

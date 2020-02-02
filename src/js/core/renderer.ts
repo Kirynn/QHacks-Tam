@@ -27,7 +27,6 @@ export class renderer {
 
             context.beginPath();
             context.stroke();
-
             context.fillText("My Tamagachi", 540, 280);
             this.context = context;
         }
@@ -40,6 +39,7 @@ export class renderer {
 
     public drawText(position : Array<number>, text : string, font : string) : void {
         
+        this.context.fillStyle = "black";
         this.context.font = font;
         this.context.fillText(text, position[0], position[1]);
     }

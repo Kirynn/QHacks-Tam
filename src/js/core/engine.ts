@@ -5,13 +5,14 @@ import { ui } from "./ui";
 import { UITextElement } from "@js/ui/uiElements";
 import { sprite } from "@js/core/sprite";
 import { apple } from "@js/objects/apple";
+import { poop } from "@js/objects/poop";
 import { collison } from "@js/events/events";
 
 import testchar from '@assets/testchar.json';
 import heartSpriteSheet from '@assets/heartSpriteSheet.json';
 import catCrouchSpriteSheet from '@assets/catCrouchSpriteSheet.json';
 import appleFile from '@assets/apple.json';
-import poop from '@assets/poop.json';
+import poopFile from '@assets/poop.json';
 import { cursorTo } from "readline";
 import { EngineError } from "@js/errors/engineError";
 import { controls } from "@js/UI/controls";
@@ -51,11 +52,11 @@ export class engine {
         this.tams.push(t2);
 
         this.UI.addElement(new UITextElement("happiness", [300, 50], `Happiness: ${this.tams[0].happiness}`));
-        this.UI.addElement(new UITextElement("health", [300, 75], `Health: ${this.tams[0].health}`));
-        this.UI.addElement(new UITextElement("poop", [300, 100], `Waste: ${this.tams[0].poop}`));
+        this.UI.addElement(new UITextElement("health", [300, 80], `Health: ${this.tams[0].health}`));
+        this.UI.addElement(new UITextElement("poop", [300, 105], `Waste: ${this.tams[0].poop}`));
 
         new apple('apple1', appleFile, ['collider', 'draggable', 'food'], [600, 200]);
-        //new poop('poop', poop, ['collider', 'draggable', 'food'], [500, 500] );
+        new poop('poop', poopFile, ['collider', 'draggable', 'food'], [600, 300] );
         
         this.intervals.push(setInterval(this.simulate, 1000 / 120));
         this.intervals.push(setInterval(this.checkin, 1000 * this.checkinTime));
