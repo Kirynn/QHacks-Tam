@@ -1,6 +1,6 @@
-import {gameController} from '@js/core/engine'
+import {engine} from '@js/core/engine'
 
-var ENGINE : gameController = new gameController();
+var ENGINE : engine = new engine();
 
 window.ENGINE = ENGINE;
 
