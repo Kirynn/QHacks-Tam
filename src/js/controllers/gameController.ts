@@ -5,10 +5,12 @@ import { uiController } from "./uiController";
 import { UITextElement } from "@js/UI/uiElements";
 import { sprite } from "@js/sprite";
 import { apple } from "@js/objects/apple";
+import { collison } from "@js/events/events";
 
 import testchar from '@assets/testchar.json';
 import heartSpriteSheet from '@assets/heartSpriteSheet.json';
 import appleFile from '@assets/apple.json';
+import { cursorTo } from "readline";
 
 export class gameController {
 
@@ -63,11 +65,11 @@ export class gameController {
         this.RENDERER.context.fillStyle = 'red';
         RENDERER.context.rect(0, 0, 5, 5);
         this.RENDERER.context.stroke();
-        
+
         this.RENDERER.context.beginPath();
         RENDERER.context.strokeStyle = "red";
         this.RENDERER.context.fillStyle = 'red';
-        RENDERER.context.rect(this.RENDERER.canvas.width-5, this.RENDERER.canvas.height-5, this.RENDERER.canvas.width, this.RENDERER.canvas.height);
+        RENDERER.context.rect(this.RENDERER.canvas.width - 5, this.RENDERER.canvas.height - 5, this.RENDERER.canvas.width, this.RENDERER.canvas.height);
         this.RENDERER.context.stroke();
 
         this.frameCount < 30 ? this.frameCount++ : this.frameCount = 0;
@@ -85,8 +87,11 @@ export class gameController {
                     Object.entries(this.sprites).filter(tuple => tuple[1].hitbox).forEach((KeyValuePair) => {
                         if (GUID != KeyValuePair[0]) {
                             if (KeyValuePair[1].hitbox != null) {
-                                let x = curSprite.isCollision(KeyValuePair[1].hitbox);
-                                console.log(x);
+                                if (curSprite.isCollision(KeyValuePair[1])) {
+                                    if(typeof (curSprite as unknown as collison)['onCollison'] === 'function') {
+                                        (curSprite as unknown as collison).onCollison(KeyValuePair[1]);
+                                    }
+                                }
                             }
                         }
                     });
@@ -106,7 +111,7 @@ export class gameController {
         }
     }
 
-    public registerDraggable(GUID : string, funcUp : Function, funcMove : Function, funcDown : Function) {
+    public registerDraggable(GUID: string, funcUp: Function, funcMove: Function, funcDown: Function) {
 
         if (this.flags['draggable'].includes(GUID)) {
             RENDERER.canvas.addEventListener('mouseup', (event) => {
@@ -121,9 +126,14 @@ export class gameController {
         }
     }
 
-    public toCanvasPos(x : number, y : number) {
+    public toCanvasPos(x: number, y: number) {
 
         return [x - this.RENDERER.canvas.offsetLeft, y - this.RENDERER.canvas.offsetTop]
+    }
+
+    public destory(guid: string): void {
+
+        delete this.sprites[guid];
     }
 
     addTam(tam: tamController): void {

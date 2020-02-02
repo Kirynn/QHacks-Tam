@@ -5,13 +5,12 @@ import { Guid } from "./GUID";
 export class sprite {
 
     public GUID: string;
-
+    public name: string;
+    public hitbox: Array<number> | undefined | null;
+    
     protected position: Array<number>;
-    protected name: string;
     protected animController: animController;
     protected flags: Array<string>;
-
-    public hitbox: Array<number> | undefined | null;
 
     constructor(name: string, animData: animData, flags?: Array<string>, position?: Array<number>, hitbox: boolean = false) {
 
@@ -64,17 +63,20 @@ export class sprite {
         }
     }
 
-    isCollision = (hitbox2: Array<number>) => {
+    isCollision = (sprite: sprite) => {
         if (this.hitbox == null || this.hitbox == undefined) {
-            return false;
+            throw new Error('One or more hitboxes are not defined');
         }
-        if (this.hitbox[0] < hitbox2[0] + hitbox2[2] &&
+
+        let hitbox2 = sprite.hitbox;
+
+        return (
+            hitbox2 && 
+            this.hitbox[0] < hitbox2[0] + hitbox2[2] &&
             this.hitbox[0] + this.hitbox[2] > hitbox2[0] &&
             this.hitbox[1] < hitbox2[1] + hitbox2[3] &&
-            this.hitbox[1] + this.hitbox[3] > hitbox2[1]) {
-            console.log(true);
-            return true;
-        }
+            this.hitbox[1] + this.hitbox[3] > hitbox2[1]
+        )
     }
 
     protected isInside(x: number, y: number) {

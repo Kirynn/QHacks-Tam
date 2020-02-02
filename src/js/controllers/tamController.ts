@@ -1,8 +1,8 @@
 import { sprite } from '@js/sprite';
 import { animData } from '@js/animData';
-import { clickable } from '@js/events/events';
+import { clickable, collison } from '@js/events/events';
 
-export class tamController extends sprite implements clickable {
+export class tamController extends sprite implements clickable, collison {
 
     /**
      * Happiness & Health start at 100 and go down
@@ -129,5 +129,11 @@ export class tamController extends sprite implements clickable {
         }
         return false;
 
+    }
+
+    onCollison(collisonSprite : sprite) : void {
+
+        console.log(`collided with ${collisonSprite.name}`);
+        ENGINE.destory(collisonSprite.GUID);
     }
 }
