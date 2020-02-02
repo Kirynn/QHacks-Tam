@@ -16,8 +16,10 @@ export class renderer {
             throw Error("No canvas found");
         }
 
-        this.canvas.width = window.innerWidth;
-        this.canvas.height = window.innerHeight;
+        //this.canvas.width = window.innerWidth;
+        //this.canvas.height = window.innerHeight;
+        this.canvas.width = 500;
+        this.canvas.height = 500;
 
         let context : CanvasRenderingContext2D | null = this.canvas.getContext('2d');
 

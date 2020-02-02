@@ -16,13 +16,25 @@
     }
     .flex-container{
             display: flex;
-            flex-direction: column;
+            flex-direction: row;
+            align-items: baseline;
         }
+    #left {
+        min-width: 65%;
+        //flex: 1 0 auto;
+    }
     </style>
 </head>
 <body>
-    <div id="app"></div>
-    <canvas></canvas>
-    <button type ="button">Feed Me!</button>
+    <div class="flex-container">
+        <div id="app"></div>
+        <div id="left">
+            <canvas>
+            </canvas>
+        </div>
+        <div id="right">
+            <button type ="button" value="Click" id="feedButton">Feed Me!</button>
+        </div>
+    </div>
 </body>
 </html>

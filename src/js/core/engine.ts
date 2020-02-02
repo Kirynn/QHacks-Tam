@@ -49,7 +49,7 @@ export class engine {
         this.UI.addElement(new UITextElement("health", [300, 75], `Health: ${this.tams[0].health}`));
         this.UI.addElement(new UITextElement("poop", [300, 100], `Waste: ${this.tams[0].poop}`));
 
-        new apple('apple1', appleFile, ['collider', 'draggable', 'food'], [500, 500]);
+        new apple('apple1', appleFile, ['collider', 'draggable', 'food'], [250,250]);
 
         this.intervals.push(setInterval(this.simulate, 1000 / 120));
         this.intervals.push(setInterval(this.checkin, 1000 * this.checkinTime));
