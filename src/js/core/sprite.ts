@@ -1,6 +1,6 @@
-import { animController } from "@js/controllers/animController";
-import { animData } from "@js/animData";
-import { Guid } from "./GUID";
+import { animator } from "@js/core/animator";
+import { animData } from "@js/types/animationData";
+import { Guid } from "@js/utils/GUID";
 
 export class sprite {
 
@@ -10,7 +10,7 @@ export class sprite {
     public flags: Array<string>;
     
     protected position: Array<number>;
-    protected animController: animController;
+    protected animator: animator;
 
     constructor(name: string, animData: animData, flags?: Array<string>, position?: Array<number>, hitbox: boolean = false) {
 
@@ -29,27 +29,27 @@ export class sprite {
             });
         }
 
-        this.animController = new animController(animData);
+        this.animator = new animator(animData);
         this.position = position ?? [0, 0];
         this.name = name;
         if (hitbox == true || this.flags.includes('collider')) {
             this.hitbox = [
                 this.position[0],
                 this.position[1],
-                this.animController.animData.size[0] + this.position[0],
-                this.animController.animData.size[1] + this.position[1]
+                this.animator.animData.size[0] + this.position[0],
+                this.animator.animData.size[1] + this.position[1]
             ]
         }
     }
 
     update(): void {
 
-        RENDERER.drawSprite(this.animController.sheet,
-            this.animController.slicePos[0], this.animController.slicePos[1],
-            this.animController.animData.size[0], this.animController.animData.size[1],
+        RENDERER.drawSprite(this.animator.sheet,
+            this.animator.slicePos[0], this.animator.slicePos[1],
+            this.animator.animData.size[0], this.animator.animData.size[1],
             this.position[0], this.position[1],
-            this.animController.animData.size[0], this.animController.animData.size[1]);
-        this.animController.update();
+            this.animator.animData.size[0], this.animator.animData.size[1]);
+        this.animator.update();
     }
 
     updateHitBox() {
@@ -57,8 +57,8 @@ export class sprite {
             this.hitbox = [
                 this.position[0],
                 this.position[1],
-                this.animController.animData.size[0] + this.position[0],
-                this.animController.animData.size[1] + this.position[1]
+                this.animator.animData.size[0] + this.position[0],
+                this.animator.animData.size[1] + this.position[1]
             ]
         }
     }

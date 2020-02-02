@@ -1,7 +1,7 @@
 import * as path from 'path';
-import { animData, animation } from '@js/animData';
+import { animData, animation } from '@js/types/animationData';
 
-export class animController {
+export class animator {
 
     sheet: HTMLImageElement;
     animData: animData;

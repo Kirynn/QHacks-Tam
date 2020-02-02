@@ -1,9 +1,9 @@
-import { tamController } from "./tamController";
-import { renderer } from "@js/renderer";
-import { debug } from "@js/debug";
+import { tamController } from "../objects/tam";
+import { renderer } from "@js/core/renderer";
+import { debug } from "@js/core/debug";
 import { uiController } from "./uiController";
-import { UITextElement } from "@js/UI/uiElements";
-import { sprite } from "@js/sprite";
+import { UITextElement } from "@js/ui/uiElements";
+import { sprite } from "@js/core/sprite";
 import { apple } from "@js/objects/apple";
 import { collison } from "@js/events/events";
 

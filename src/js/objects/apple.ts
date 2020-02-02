@@ -1,7 +1,7 @@
-import { sprite } from "@js/sprite";
+import { sprite } from "@js/core/sprite";
 import { draggable } from "@js/events/events";
-import { animData } from "@js/animData";
-import { debug } from "@js/debug";
+import { animData } from "@js/types/animationData";
+
 export class apple extends sprite implements draggable {
 
     dragging: boolean = false;
@@ -18,8 +18,6 @@ export class apple extends sprite implements draggable {
 
         if (this.isInside(event.pageX, event.pageY)) {
 
-            this.position = ENGINE.toCanvasPos(event.pageX, event.pageY);
-            this.updateHitBox();
             this.dragging = true;
         }
     }

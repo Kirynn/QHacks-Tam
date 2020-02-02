@@ -1,5 +1,5 @@
-import { sprite } from '@js/sprite';
-import { animData } from '@js/animData';
+import { sprite } from '@js/core/sprite';
+import { animData } from '@js/types/animationData';
 import { clickable, collison } from '@js/events/events';
 
 export class tamController extends sprite implements clickable, collison {
@@ -26,7 +26,7 @@ export class tamController extends sprite implements clickable, collison {
 
         if (this.animList.includes(name)) {
 
-            super.animController.nextAnim = name;
+            super.animator.nextAnim = name;
         }
 
         else {

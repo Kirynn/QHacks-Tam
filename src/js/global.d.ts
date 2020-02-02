@@ -1,6 +1,6 @@
 
-declare var RENDERER: import('./renderer').renderer;
+declare var RENDERER: import('./core/renderer').renderer;
 
-declare var ENGINE : import('./controllers/gameController').gameController;
+declare var ENGINE : import('./core/engine').gameController;
 
-declare var DEBUG : import('./debug').debug;
+declare var DEBUG : import('./core/debug').debug;

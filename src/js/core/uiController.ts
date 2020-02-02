@@ -1,4 +1,4 @@
-import { UIElement, UITextElement } from '@js/UI/uiElements';
+import { UIElement, UITextElement } from '@js/ui/uiElements';
 
 export interface UpdateText {
     name : string;

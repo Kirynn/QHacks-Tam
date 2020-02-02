@@ -1,4 +1,4 @@
-import { sprite } from '@js/sprite';
+import { sprite } from '@js/core/sprite';
 
 export interface clickable {
     

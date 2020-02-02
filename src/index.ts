@@ -1,4 +1,4 @@
-import {gameController} from '@js/controllers/gameController'
+import {gameController} from '@js/core/engine'
 
 var ENGINE : gameController = new gameController();
 
