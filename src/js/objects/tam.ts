@@ -7,8 +7,8 @@ export class tam extends sprite implements clickable, collison {
     /**
      * Happiness & Health start at 100 and go down
      */
-    happiness: number = 90;
-    health: number = 100;
+    happiness: number = 50;
+    health: number = 50;
     poop: number = 0;
     animList: Array<string>;
 
@@ -55,6 +55,12 @@ export class tam extends sprite implements clickable, collison {
              * sad animation?
              */
         }
+        dispatchEvent(new CustomEvent("updateText", {
+            detail: {
+                "name": "health",
+                "value": `Health ${this.health}`
+            }
+        }));
     }
 
     updateHappiness(i: number) {
@@ -78,7 +84,8 @@ export class tam extends sprite implements clickable, collison {
                 "value": `Happiness ${this.happiness}`
             }
         }));
-    }
+
+}
 
     updatePoop(time: number) {
         if (time % 20 == 0) {
@@ -141,7 +148,8 @@ export class tam extends sprite implements clickable, collison {
 
         console.log(`collided with ${collisonSprite.name}`);
         if (collisonSprite.flags.includes('food')) {
-            this.updateHappiness(10);
+            this.updateHappiness(5);
+            this.updateHealth(10);
             ENGINE.destory(collisonSprite.GUID);
         }
     }

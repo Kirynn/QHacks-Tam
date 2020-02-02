@@ -56,7 +56,7 @@ export class engine {
         this.UI.addElement(new UITextElement("poop", [300, 105], `Waste: ${this.tams[0].poop}`));
 
         new apple('apple1', appleFile, ['collider', 'draggable', 'food'], [600, 200]);
-        new poop('poop', poopFile, ['collider', 'draggable', 'food'], [600, 300] );
+        //new poop('poop', poopFile, ['collider', 'draggable', 'food'], [600, 300] );
         
         this.intervals.push(setInterval(this.simulate, 1000 / 120));
         this.intervals.push(setInterval(this.checkin, 1000 * this.checkinTime));
