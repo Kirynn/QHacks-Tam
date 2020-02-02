@@ -8,6 +8,6 @@ export class controls{
     }
 
     addMoreFood(){
-        new apple('apple1', appleFile, ['collider', 'draggable', 'food'], [500, 500]);
+        new apple('apple2', appleFile, ['collider', 'draggable', 'food'], [600, 300]);
     }
 }

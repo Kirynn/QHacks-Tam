@@ -14,6 +14,7 @@ import appleFile from '@assets/apple.json';
 import poop from '@assets/poop.json';
 import { cursorTo } from "readline";
 import { EngineError } from "@js/errors/engineError";
+import { controls } from "@js/UI/controls";
 
 export class engine {
 
@@ -30,12 +31,15 @@ export class engine {
     public RENDERER: renderer;
     public DEBUG: debug;
     public UI: ui;
+    public controls: controls;
 
     constructor() {
 
         this.RENDERER = new renderer();
         this.DEBUG = new debug();
         this.UI = new ui();
+        this.controls = new controls();
+
     }
 
     runGame(): void {
@@ -50,9 +54,9 @@ export class engine {
         this.UI.addElement(new UITextElement("health", [300, 75], `Health: ${this.tams[0].health}`));
         this.UI.addElement(new UITextElement("poop", [300, 100], `Waste: ${this.tams[0].poop}`));
 
-        new apple('apple1', appleFile, ['collider', 'draggable', 'food'], [500, 500]);
-        new poop('poop', poop, ['collider', 'draggable', 'food'], [500, 500] );
-
+        new apple('apple1', appleFile, ['collider', 'draggable', 'food'], [600, 200]);
+        //new poop('poop', poop, ['collider', 'draggable', 'food'], [500, 500] );
+        
         this.intervals.push(setInterval(this.simulate, 1000 / 120));
         this.intervals.push(setInterval(this.checkin, 1000 * this.checkinTime));
     }
