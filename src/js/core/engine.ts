@@ -11,6 +11,7 @@ import testchar from '@assets/testchar.json';
 import heartSpriteSheet from '@assets/heartSpriteSheet.json';
 import catCrouchSpriteSheet from '@assets/catCrouchSpriteSheet.json';
 import appleFile from '@assets/apple.json';
+import poop from '@assets/poop.json';
 import { cursorTo } from "readline";
 import { EngineError } from "@js/errors/engineError";
 
@@ -49,7 +50,8 @@ export class engine {
         this.UI.addElement(new UITextElement("health", [300, 75], `Health: ${this.tams[0].health}`));
         this.UI.addElement(new UITextElement("poop", [300, 100], `Waste: ${this.tams[0].poop}`));
 
-        new apple('apple1', appleFile, ['collider', 'draggable', 'food'], [250,250]);
+        new apple('apple1', appleFile, ['collider', 'draggable', 'food'], [500, 500]);
+        new poop('poop', poop, ['collider', 'draggable', 'food'], [500, 500] );
 
         this.intervals.push(setInterval(this.simulate, 1000 / 120));
         this.intervals.push(setInterval(this.checkin, 1000 * this.checkinTime));
