@@ -1,0 +1,15 @@
+{
+    "filepath": "catCrouchSpriteSheet.png",
+    "size": [400, 400],
+    "spacing": 400,
+    "animations": {
+        "idle": {
+            "name": "idle",
+            "start": [0, 0],
+            "frames": 4,
+            "offset": 50,
+            "forceOut": true,
+            "stretch": 5
+        }
+    }
+}

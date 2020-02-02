@@ -9,6 +9,7 @@ import { collison } from "@js/events/events";
 
 import testchar from '@assets/testchar.json';
 import heartSpriteSheet from '@assets/heartSpriteSheet.json';
+import catCrouchSpriteSheet from '@assets/catCrouchSpriteSheet.json';
 import appleFile from '@assets/apple.json';
 import { cursorTo } from "readline";
 import { EngineError } from "@js/errors/engineError";
@@ -40,6 +41,9 @@ export class gameController {
 
         let t1 = new tamController('tam', heartSpriteSheet, ['checker', 'collider', 'clickable']);
         this.tams.push(t1);
+
+        let t2 = new tamController('tam', catCrouchSpriteSheet, ['checker', 'collider', 'clickable']);
+        this.tams.push(t2);
 
         this.UI.addElement(new UITextElement("happiness", [300, 50], `Happiness: ${this.tams[0].happiness}`));
         this.UI.addElement(new UITextElement("health", [300, 75], `Health: ${this.tams[0].health}`));
