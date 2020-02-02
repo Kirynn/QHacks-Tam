@@ -1,15 +1,15 @@
 {
     "filepath": "poop.png",
-    "size": [200, 200],
-    "spacing": 400,
+    "size": [100, 200],
+    "spacing": 100,
     "animations": {
         "idle": {
             "name": "idle",
             "start": [0, 0],
-            "frames": 4,
-            "offset": 0,
+            "frames": 5,
+            "offset": 10,
             "forceOut": true,
-            "stretch": 5
+            "stretch": 0
         }
     }
 }

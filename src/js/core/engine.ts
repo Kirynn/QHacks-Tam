@@ -48,8 +48,8 @@ export class engine {
         let t1 = new tam('tam', heartSpriteSheet, ['checker', 'collider', 'clickable']);
         this.tams.push(t1);
 
-        let t2 = new tam('tam', catCrouchSpriteSheet, ['checker', 'collider', 'clickable']);
-        this.tams.push(t2);
+        //let t2 = new tam('tam', catCrouchSpriteSheet, ['checker', 'collider', 'clickable']);
+        //this.tams.push(t2);
 
         this.UI.addElement(new UITextElement("happiness", [300, 50], `Happiness: ${this.tams[0].happiness}`));
         this.UI.addElement(new UITextElement("health", [300, 80], `Health: ${this.tams[0].health}`));
