@@ -33,7 +33,7 @@ export class gameController {
 
     runGame(): void {
 
-        let t1 = new tamController('tam', testchar, ['collider', 'clickable']);
+        let t1 = new tamController('tam', heartSpriteSheet, ['collider', 'clickable']);
         this.tams.push(t1);
         this.UI.addElement(new UITextElement([150, 100], `Happiness: ${this.tams[0].happiness}`));
 

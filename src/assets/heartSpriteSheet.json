@@ -1,11 +1,11 @@
 {
     "filepath": "heartSpriteSheet.png",
-    "size": [100, 150],
+    "size": [1000, 400],
     "spacing": 100,
     "animations": {
         "idle": {
             "name": "idle",
-            "start": [100, 50],
+            "start": [100, -100],
             "frames": 5,
             "offset": 0,
             "forceOut": true,
