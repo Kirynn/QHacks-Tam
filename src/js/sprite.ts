@@ -7,10 +7,10 @@ export class sprite {
     public GUID: string;
     public name: string;
     public hitbox: Array<number> | undefined | null;
+    public flags: Array<string>;
     
     protected position: Array<number>;
     protected animController: animController;
-    protected flags: Array<string>;
 
     constructor(name: string, animData: animData, flags?: Array<string>, position?: Array<number>, hitbox: boolean = false) {
 

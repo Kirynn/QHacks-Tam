@@ -11,6 +11,7 @@ import testchar from '@assets/testchar.json';
 import heartSpriteSheet from '@assets/heartSpriteSheet.json';
 import appleFile from '@assets/apple.json';
 import { cursorTo } from "readline";
+import { EngineError } from "@js/errors/engineError";
 
 export class gameController {
 
@@ -21,6 +22,8 @@ export class gameController {
     animHandle: number = 0;
     frameCount: number = 0;
     checkinTime: number = 5;
+
+    private intervals: Array<NodeJS.Timeout> = [];
 
     public RENDERER: renderer;
     public DEBUG: debug;
@@ -35,16 +38,17 @@ export class gameController {
 
     runGame(): void {
 
-        let t1 = new tamController('tam', testchar, ['collider', 'clickable']);
+        let t1 = new tamController('tam', testchar, ['checker', 'collider', 'clickable']);
         this.tams.push(t1);
-        this.UI.addElement(new UITextElement([150, 100], `Happiness: ${this.tams[0].happiness}`));
-        this.UI.addElement(new UITextElement([150, 75], `Health: ${this.tams[0].health}`));
-        this.UI.addElement(new UITextElement([150, 50], `Amount of Poo: ${this.tams[0].poop}`));
 
-        new apple('apple1', appleFile, ['collider', 'draggable'], [500, 500]);
+        this.UI.addElement(new UITextElement("happiness", [150, 100], `Happiness: ${this.tams[0].happiness}`));
+        this.UI.addElement(new UITextElement("health", [150, 75], `Health: ${this.tams[0].health}`));
+        this.UI.addElement(new UITextElement("poop", [150, 50], `Amount of Poo: ${this.tams[0].poop}`));
 
-        setInterval(this.simulate, 1000 / 120);
-        setInterval(this.checkin, 1000 * this.checkinTime);
+        new apple('apple1', appleFile, ['collider', 'draggable', 'food'], [500, 500]);
+
+        this.intervals.push(setInterval(this.simulate, 1000 / 120));
+        this.intervals.push(setInterval(this.checkin, 1000 * this.checkinTime));
     }
 
     private checkin = (): void => {
@@ -78,28 +82,45 @@ export class gameController {
     }
 
     private simulate = (): void => {
+        try {
+            if (Math.random() * 1000 > 800) {
 
-        if (Math.random() * 1000 > 800) {
+                if (Object.keys(this.flags).includes("checker")) {
+                    this.flags["checker"].forEach(GUID => {
 
-            if (Object.keys(this.flags).includes("collider")) {
-                this.flags["collider"].forEach(GUID => {
+                        let curSprite = this.sprites[GUID];
 
-                    let curSprite = this.sprites[GUID];
+                        if (curSprite === undefined) {
+                            throw new EngineError("curSprite was set to undefined");
+                        }
 
-                    Object.entries(this.sprites).filter(tuple => tuple[1].hitbox).forEach((KeyValuePair) => {
-                        if (GUID != KeyValuePair[0]) {
-                            if (KeyValuePair[1].hitbox != null) {
-                                if (curSprite.isCollision(KeyValuePair[1])) {
-                                    if(typeof (curSprite as unknown as collison)['onCollison'] === 'function') {
-                                        (curSprite as unknown as collison).onCollison(KeyValuePair[1]);
+                        Object.entries(this.sprites).filter(tuple => tuple[1].hitbox).forEach((KeyValuePair) => {
+                            if (GUID != KeyValuePair[0]) {
+                                if (KeyValuePair[1].hitbox != null) {
+                                    if (curSprite.isCollision(KeyValuePair[1])) {
+                                        if (typeof (curSprite as unknown as collison)['onCollison'] === 'function') {
+                                            (curSprite as unknown as collison).onCollison(KeyValuePair[1]);
+                                        }
                                     }
                                 }
                             }
-                        }
+                        });
                     });
+                    cancelAnimationFrame(this.animHandle);
+                    this.animHandle = requestAnimationFrame(this.draw);
+                }
+            }
+        }
+
+        catch (error) {
+            if (error instanceof EngineError) {
+
+                console.error(error.message);
+                console.log(ENGINE);
+
+                this.intervals.forEach(loop => {
+                    clearInterval(loop);
                 });
-                cancelAnimationFrame(this.animHandle);
-                this.animHandle = requestAnimationFrame(this.draw);
             }
         }
     }

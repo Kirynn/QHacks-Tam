@@ -1,9 +1,11 @@
 export abstract class UIElement {
 
+    public name : string;
     public position : Array<number>; 
 
-    constructor(position : Array<number>) {
+    constructor(name : string, position : Array<number>) {
 
+        this.name = name;
         this.position = position;
     }
 
@@ -12,12 +14,13 @@ export abstract class UIElement {
 
 export class UITextElement extends UIElement {
 
-    private font : string = '30px Arial';
-    private text : string = ''
+    public font : string = '30px Arial';
+    public text : string = ''
 
-    constructor(position : Array<number>, text : string, font ?: string) {
+    constructor(name : string, position : Array<number>, text : string, font ?: string) {
 
-        super(position);
+        super(name, position);
+
         if (font) {
             this.font = font;
         }
@@ -32,9 +35,9 @@ export class UITextElement extends UIElement {
 
 export class UIImageElement extends UIElement {
 
-    constructor(position : Array<number>) {
+    constructor(name : string, position : Array<number>) {
 
-        super(position)
+        super(name, position)
     }
 
     draw() : void {
