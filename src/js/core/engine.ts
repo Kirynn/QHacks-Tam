@@ -1,7 +1,7 @@
 import { tamController } from "../objects/tam";
 import { renderer } from "@js/core/renderer";
 import { debug } from "@js/core/debug";
-import { uiController } from "./uiController";
+import { uiController } from "./ui";
 import { UITextElement } from "@js/ui/uiElements";
 import { sprite } from "@js/core/sprite";
 import { apple } from "@js/objects/apple";
