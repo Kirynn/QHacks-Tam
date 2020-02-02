@@ -38,12 +38,12 @@ export class gameController {
 
     runGame(): void {
 
-        let t1 = new tamController('tam', testchar, ['checker', 'collider', 'clickable']);
+        let t1 = new tamController('tam', heartSpriteSheet, ['checker', 'collider', 'clickable']);
         this.tams.push(t1);
 
-        this.UI.addElement(new UITextElement("happiness", [150, 100], `Happiness: ${this.tams[0].happiness}`));
-        this.UI.addElement(new UITextElement("health", [150, 75], `Health: ${this.tams[0].health}`));
-        this.UI.addElement(new UITextElement("poop", [150, 50], `Amount of Poo: ${this.tams[0].poop}`));
+        this.UI.addElement(new UITextElement("happiness", [300, 50], `Happiness: ${this.tams[0].happiness}`));
+        this.UI.addElement(new UITextElement("health", [300, 75], `Health: ${this.tams[0].health}`));
+        this.UI.addElement(new UITextElement("poop", [300, 100], `Waste: ${this.tams[0].poop}`));
 
         new apple('apple1', appleFile, ['collider', 'draggable', 'food'], [500, 500]);
 

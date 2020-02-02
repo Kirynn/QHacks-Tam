@@ -6,7 +6,7 @@
         "idle": {
             "name": "idle",
             "start": [0, 0],
-            "frames": 5,
+            "frames": 4,
             "offset": 50,
             "forceOut": true,
             "stretch": 5
