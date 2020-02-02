@@ -2,7 +2,7 @@ import { sprite } from '@js/core/sprite';
 import { animData } from '@js/types/animationData';
 import { clickable, collison } from '@js/events/events';
 
-export class tamController extends sprite implements clickable, collison {
+export class tam extends sprite implements clickable, collison {
 
     /**
      * Happiness & Health start at 100 and go down

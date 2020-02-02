@@ -1,7 +1,7 @@
-import { tamController } from "../objects/tam";
+import { tam } from "@js/objects/tam";
 import { renderer } from "@js/core/renderer";
 import { debug } from "@js/core/debug";
-import { uiController } from "./ui";
+import { ui } from "./ui";
 import { UITextElement } from "@js/ui/uiElements";
 import { sprite } from "@js/core/sprite";
 import { apple } from "@js/objects/apple";
@@ -14,12 +14,12 @@ import appleFile from '@assets/apple.json';
 import { cursorTo } from "readline";
 import { EngineError } from "@js/errors/engineError";
 
-export class gameController {
+export class engine {
 
     flags: { [name: string]: Array<string> } = {};
     sprites: { [guid: string]: sprite } = {};
 
-    tams: Array<tamController> = [];
+    tams: Array<tam> = [];
     animHandle: number = 0;
     frameCount: number = 0;
     checkinTime: number = 5;
@@ -28,21 +28,21 @@ export class gameController {
 
     public RENDERER: renderer;
     public DEBUG: debug;
-    public UI: uiController;
+    public UI: ui;
 
     constructor() {
 
         this.RENDERER = new renderer();
         this.DEBUG = new debug();
-        this.UI = new uiController();
+        this.UI = new ui();
     }
 
     runGame(): void {
 
-        let t1 = new tamController('tam', heartSpriteSheet, ['checker', 'collider', 'clickable']);
+        let t1 = new tam('tam', heartSpriteSheet, ['checker', 'collider', 'clickable']);
         this.tams.push(t1);
 
-        let t2 = new tamController('tam', catCrouchSpriteSheet, ['checker', 'collider', 'clickable']);
+        let t2 = new tam('tam', catCrouchSpriteSheet, ['checker', 'collider', 'clickable']);
         this.tams.push(t2);
 
         this.UI.addElement(new UITextElement("happiness", [300, 50], `Happiness: ${this.tams[0].happiness}`));
@@ -163,7 +163,7 @@ export class gameController {
         delete this.sprites[guid];
     }
 
-    addTam(tam: tamController): void {
+    addTam(tam: tam): void {
         this.tams.push(tam);
     }
 

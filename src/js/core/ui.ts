@@ -4,7 +4,7 @@ export interface UpdateText {
     name : string;
 }
 
-export class uiController {
+export class ui {
 
     private uiElements : {[name : string] : UIElement } = {};
 
